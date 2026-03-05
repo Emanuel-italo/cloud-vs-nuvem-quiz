@@ -1,85 +1,206 @@
 export interface Question {
+
   id: number;
+
   text: string;
+
   options: { label: string; text: string }[];
+
   correctAnswer: string;
+
   points: number;
-}
 
+}
+ 
 export interface Achievement {
+
   id: string;
+
   title: string;
+
   description: string;
+
   icon: string;
+
   unlocked: boolean;
+
   requiredScore: number;
+
 }
-
+ 
 export const questions: Question[] = [
-  {
-    id: 1,
-    text: "QUAL É A PRINCIPAL VANTAGEM DA CLOUD COMPUTING SOBRE UM SERVIDOR LOCAL (NUVEM) EM TERMOS DE ESCALABILIDADE?",
-    options: [
-      { label: "A", text: "Servidores locais escalam mais rápido que a cloud" },
-      { label: "B", text: "A cloud permite escalar recursos sob demanda, sem necessidade de comprar hardware" },
-      { label: "C", text: "Não há diferença de escalabilidade entre cloud e servidor local" },
-      { label: "D", text: "Servidores locais oferecem escalabilidade infinita" },
-    ],
-    correctAnswer: "B",
-    points: 20,
-  },
-  {
-    id: 2,
-    text: "POR QUE A CLOUD É CONSIDERADA MAIS ECONÔMICA QUE MANTER UM DATACENTER LOCAL?",
-    options: [
-      { label: "A", text: "Porque a cloud é sempre gratuita" },
-      { label: "B", text: "Porque elimina custos de manutenção física, energia e equipe dedicada de infraestrutura" },
-      { label: "C", text: "Porque servidores locais não consomem energia" },
-      { label: "D", text: "Porque datacenters locais não precisam de segurança" },
-    ],
-    correctAnswer: "B",
-    points: 20,
-  },
-  {
-    id: 3,
-    text: "QUAL MODELO DE SERVIÇO CLOUD PERMITE QUE A EMPRESA FOQUE APENAS NO CÓDIGO DA APLICAÇÃO?",
-    options: [
-      { label: "A", text: "IaaS (Infrastructure as a Service)" },
-      { label: "B", text: "Datacenter On-Premises" },
-      { label: "C", text: "PaaS (Platform as a Service)" },
-      { label: "D", text: "Colocation" },
-    ],
-    correctAnswer: "C",
-    points: 20,
-  },
-  {
-    id: 4,
-    text: "EM TERMOS DE DISASTER RECOVERY, QUAL É A VANTAGEM DA CLOUD SOBRE UM SERVIDOR LOCAL?",
-    options: [
-      { label: "A", text: "Servidores locais possuem backup automático em múltiplas regiões" },
-      { label: "B", text: "A cloud oferece replicação geográfica automática e RPO/RTO muito menores" },
-      { label: "C", text: "Não há diferença em disaster recovery" },
-      { label: "D", text: "Servidores locais são imunes a desastres" },
-    ],
-    correctAnswer: "B",
-    points: 20,
-  },
-  {
-    id: 5,
-    text: "POR QUE GRANDES EMPRESAS ESTÃO MIGRANDO DE DATACENTERS LOCAIS PARA A CLOUD?",
-    options: [
-      { label: "A", text: "Apenas por tendência de mercado, sem benefícios reais" },
-      { label: "B", text: "Para reduzir custos, aumentar agilidade, melhorar segurança e acessar inovações como IA e ML" },
-      { label: "C", text: "Porque servidores locais são mais modernos" },
-      { label: "D", text: "Porque a cloud não possui custos" },
-    ],
-    correctAnswer: "B",
-    points: 20,
-  },
-];
 
-export const initialAchievements: Achievement[] = [
-  { id: "level1", title: "NÍVEL 1 ALCANÇADO", description: "Acerte 1 pergunta", icon: "🏆", unlocked: false, requiredScore: 20 },
-  { id: "level2", title: "NÍVEL 2 ALCANÇADO", description: "Acerte 3 perguntas", icon: "⭐", unlocked: false, requiredScore: 60 },
-  { id: "master", title: "MESTRE DA CLOUD", description: "Acerte todas as perguntas", icon: "👑", unlocked: false, requiredScore: 100 },
+  {
+
+    id: 1,
+
+    text: "SEGUNDO O NIST, QUAL DAS ALTERNATIVAS REPRESENTA UMA CARACTERÍSTICA ESSENCIAL DA CLOUD COMPUTING?",
+
+    options: [
+
+      { label: "A", text: "Compra antecipada de servidores físicos" },
+
+      { label: "B", text: "Elasticidade rápida e provisionamento sob demanda" },
+
+      { label: "C", text: "Uso exclusivo de infraestrutura local" },
+
+      { label: "D", text: "Capacidade fixa sem possibilidade de expansão" },
+
+    ],
+
+    correctAnswer: "B",
+
+    points: 20,
+
+  },
+
+  {
+
+    id: 2,
+
+    text: "QUAL MODELO DE SERVIÇO PERMITE QUE O CLIENTE GERENCIE APENAS O CÓDIGO DA APLICAÇÃO, ENQUANTO O PROVEDOR GERENCIA A INFRAESTRUTURA?",
+
+    options: [
+
+      { label: "A", text: "IaaS (Infrastructure as a Service)" },
+
+      { label: "B", text: "On-Premises" },
+
+      { label: "C", text: "PaaS (Platform as a Service)" },
+
+      { label: "D", text: "Colocation" },
+
+    ],
+
+    correctAnswer: "C",
+
+    points: 20,
+
+  },
+
+  {
+
+    id: 3,
+
+    text: "QUAL É A PRINCIPAL DIFERENÇA ENTRE CAPEX E OPEX NO CONTEXTO DE CLOUD COMPUTING?",
+
+    options: [
+
+      { label: "A", text: "CAPEX é pagamento mensal por uso e OPEX é compra de hardware" },
+
+      { label: "B", text: "CAPEX envolve alto investimento inicial em infraestrutura, enquanto OPEX é pagamento recorrente sob demanda" },
+
+      { label: "C", text: "Não existe diferença entre CAPEX e OPEX" },
+
+      { label: "D", text: "OPEX exige compra de datacenter próprio" },
+
+    ],
+
+    correctAnswer: "B",
+
+    points: 20,
+
+  },
+
+  {
+
+    id: 4,
+
+    text: "EM UMA NUVEM PÚBLICA, O QUE SIGNIFICA O CONCEITO DE MULTI-TENANT?",
+
+    options: [
+
+      { label: "A", text: "Cada cliente possui um servidor físico exclusivo" },
+
+      { label: "B", text: "Os recursos são compartilhados entre vários clientes com isolamento lógico de dados" },
+
+      { label: "C", text: "A nuvem é usada apenas por órgãos governamentais" },
+
+      { label: "D", text: "Não há separação de dados entre empresas" },
+
+    ],
+
+    correctAnswer: "B",
+
+    points: 20,
+
+  },
+
+  {
+
+    id: 5,
+
+    text: "QUAL É A PRINCIPAL VANTAGEM DA NUVEM HÍBRIDA?",
+
+    options: [
+
+      { label: "A", text: "Eliminar totalmente o uso de nuvem pública" },
+
+      { label: "B", text: "Combinar nuvem pública e privada para maior flexibilidade e segurança" },
+
+      { label: "C", text: "Utilizar apenas servidores locais" },
+
+      { label: "D", text: "Impedir escalabilidade sob demanda" },
+
+    ],
+
+    correctAnswer: "B",
+
+    points: 20,
+
+  },
+
 ];
+ 
+export const initialAchievements: Achievement[] = [
+
+  {
+
+    id: "level1",
+
+    title: "NÍVEL 1 ALCANÇADO",
+
+    description: "Acerte 1 pergunta",
+
+    icon: "🏆",
+
+    unlocked: false,
+
+    requiredScore: 20,
+
+  },
+
+  {
+
+    id: "level2",
+
+    title: "NÍVEL 2 ALCANÇADO",
+
+    description: "Acerte 3 perguntas",
+
+    icon: "⭐",
+
+    unlocked: false,
+
+    requiredScore: 60,
+
+  },
+
+  {
+
+    id: "master",
+
+    title: "MESTRE DA CLOUD",
+
+    description: "Acerte todas as perguntas",
+
+    icon: "👑",
+
+    unlocked: false,
+
+    requiredScore: 100,
+
+  },
+
+];
+ 

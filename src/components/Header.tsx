@@ -14,7 +14,7 @@ const ProfileCard = ({ image, label }: { image: string; label: string }) => (
 const Header = () => (
   <header className="w-full py-6 px-4">
     <div className="max-w-6xl mx-auto flex items-center justify-between">
-      <ProfileCard image={idealizadorBranco} label="IDEALIZADOR: CAMISA BRANCA" />
+      <ProfileCard image={idealizadorBranco} label="IDEALIZADOR: PAULO ESTALISE" />
 
       <div className="flex flex-col items-center gap-2">
         <Cloud className="w-10 h-10 text-accent animate-pulse-glow" />
@@ -26,7 +26,7 @@ const Header = () => (
         </p>
       </div>
 
-      <ProfileCard image={idealizadorAzul} label="IDEALIZADOR: CAMISA AZUL" />
+      <ProfileCard image={idealizadorAzul} label="IDEALIZADOR: EMANUEL TRINDADE" />
     </div>
   </header>
 );
