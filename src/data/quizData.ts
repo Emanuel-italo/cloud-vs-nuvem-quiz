@@ -1,206 +1,121 @@
+// src/data/quizData.ts
+
+/**
+ * Interface que define a estrutura de cada pergunta do Quiz.
+ */
 export interface Question {
-
   id: number;
-
   text: string;
-
   options: { label: string; text: string }[];
-
   correctAnswer: string;
-
   points: number;
-
 }
- 
+
+/**
+ * Interface que define a estrutura das conquistas (gamificação).
+ */
 export interface Achievement {
-
   id: string;
-
   title: string;
-
   description: string;
-
   icon: string;
-
   unlocked: boolean;
-
   requiredScore: number;
-
 }
- 
+
+/**
+ * Array de perguntas focadas na apresentação "Cloud Transition Navigator".
+ * Cada pergunta vale 20 pontos, totalizando 100 pontos.
+ */
 export const questions: Question[] = [
-
   {
-
     id: 1,
-
-    text: "SEGUNDO O NIST, QUAL DAS ALTERNATIVAS REPRESENTA UMA CARACTERÍSTICA ESSENCIAL DA CLOUD COMPUTING?",
-
+    text: "QUAL É A NOSSA META DE REDUÇÃO NO CUSTO POR TRANSAÇÃO (KPI) EM 12 MESES APÓS A MIGRAÇÃO PARA A CLOUD?",
     options: [
-
-      { label: "A", text: "Compra antecipada de servidores físicos" },
-
-      { label: "B", text: "Elasticidade rápida e provisionamento sob demanda" },
-
-      { label: "C", text: "Uso exclusivo de infraestrutura local" },
-
-      { label: "D", text: "Capacidade fixa sem possibilidade de expansão" },
-
+      { label: "A", text: "10% de redução, mantendo parte no datacenter físico" },
+      { label: "B", text: "25% de redução, adotando o modelo Replatform" },
+      { label: "C", text: "40% de redução no TCO comparado ao datacenter atual" }, // Correta baseada nos KPIs
+      { label: "D", text: "O custo se manterá igual, mas ganharemos em latência" },
     ],
-
-    correctAnswer: "B",
-
-    points: 20,
-
-  },
-
-  {
-
-    id: 2,
-
-    text: "QUAL MODELO DE SERVIÇO PERMITE QUE O CLIENTE GERENCIE APENAS O CÓDIGO DA APLICAÇÃO, ENQUANTO O PROVEDOR GERENCIA A INFRAESTRUTURA?",
-
-    options: [
-
-      { label: "A", text: "IaaS (Infrastructure as a Service)" },
-
-      { label: "B", text: "On-Premises" },
-
-      { label: "C", text: "PaaS (Platform as a Service)" },
-
-      { label: "D", text: "Colocation" },
-
-    ],
-
     correctAnswer: "C",
-
     points: 20,
-
   },
-
   {
-
+    id: 2,
+    text: "QUAL PROVEDOR DE NUVEM FOI RECOMENDADO COMO PRIMÁRIO PARA NOSSA MIGRAÇÃO E POR QUAL MOTIVO?",
+    options: [
+      { label: "A", text: "Google Cloud (GCP) pelo seu foco exclusivo em Machine Learning" },
+      { label: "B", text: "AWS, devido à maturidade em serviços financeiros e forte presença regional (São Paulo)" }, // Correta baseada nos slides de comparação
+      { label: "C", text: "Azure, para priorizar a adoção de licenças da Microsoft" },
+      { label: "D", text: "Manteremos 100% On-Premises por questões de segurança" },
+    ],
+    correctAnswer: "B",
+    points: 20,
+  },
+  {
     id: 3,
-
-    text: "QUAL É A PRINCIPAL DIFERENÇA ENTRE CAPEX E OPEX NO CONTEXTO DE CLOUD COMPUTING?",
-
+    text: "A SEGURANÇA É INEGOCIÁVEL. COMO GARANTIREMOS A PROTEÇÃO DOS DADOS DE PAGAMENTO NA NUVEM?",
     options: [
-
-      { label: "A", text: "CAPEX é pagamento mensal por uso e OPEX é compra de hardware" },
-
-      { label: "B", text: "CAPEX envolve alto investimento inicial em infraestrutura, enquanto OPEX é pagamento recorrente sob demanda" },
-
-      { label: "C", text: "Não existe diferença entre CAPEX e OPEX" },
-
-      { label: "D", text: "OPEX exige compra de datacenter próprio" },
-
+      { label: "A", text: "Criptografia AES-256 em repouso, TLS 1.3 em trânsito e provedor certificado PCI-DSS" }, // Correta baseada no slide de Segurança
+      { label: "B", text: "Transferindo a responsabilidade integral da segurança para a AWS" },
+      { label: "C", text: "Usando criptografia apenas em dados arquivados para não impactar a latência" },
+      { label: "D", text: "Mantendo os dados de cartão estritamente no nosso datacenter atual" },
     ],
-
-    correctAnswer: "B",
-
+    correctAnswer: "A",
     points: 20,
-
   },
-
   {
-
     id: 4,
-
-    text: "EM UMA NUVEM PÚBLICA, O QUE SIGNIFICA O CONCEITO DE MULTI-TENANT?",
-
+    text: "O QUE SERÁ VALIDADO NA FASE 1 (PILOTO) DA NOSSA ESTRATÉGIA DE MIGRAÇÃO?",
     options: [
-
-      { label: "A", text: "Cada cliente possui um servidor físico exclusivo" },
-
-      { label: "B", text: "Os recursos são compartilhados entre vários clientes com isolamento lógico de dados" },
-
-      { label: "C", text: "A nuvem é usada apenas por órgãos governamentais" },
-
-      { label: "D", text: "Não há separação de dados entre empresas" },
-
+      { label: "A", text: "O descomissionamento completo dos 150 servidores atuais" },
+      { label: "B", text: "A migração de todas as 4 ondas de sistemas secundários" },
+      { label: "C", text: "A migração do gateway de pagamentos para validar latência < 50ms p95 e conformidade" }, // Correta baseada nas Fases de migração
+      { label: "D", text: "A assinatura do contrato de conectividade dedicada (Direct Connect)" },
     ],
-
-    correctAnswer: "B",
-
+    correctAnswer: "C",
     points: 20,
-
   },
-
   {
-
     id: 5,
-
-    text: "QUAL É A PRINCIPAL VANTAGEM DA NUVEM HÍBRIDA?",
-
+    text: "QUAL ESTRATÉGIA UTILIZAREMOS PARA MITIGAR O RISCO DE 'VENDOR LOCK-IN' (DEPENDÊNCIA DE UM ÚNICO PROVEDOR)?",
     options: [
-
-      { label: "A", text: "Eliminar totalmente o uso de nuvem pública" },
-
-      { label: "B", text: "Combinar nuvem pública e privada para maior flexibilidade e segurança" },
-
-      { label: "C", text: "Utilizar apenas servidores locais" },
-
-      { label: "D", text: "Impedir escalabilidade sob demanda" },
-
+      { label: "A", text: "Contratos curtos de 1 ano com os provedores de nuvem" },
+      { label: "B", text: "Uso de containers (Kubernetes), APIs abertas e infraestrutura como código portátil (Terraform)" }, // Correta baseada nos Riscos
+      { label: "C", text: "Utilização exclusiva de bancos de dados proprietários da nuvem" },
+      { label: "D", text: "Recusa em utilizar serviços de nuvem pública" },
     ],
-
     correctAnswer: "B",
-
     points: 20,
-
   },
-
 ];
- 
+
+/**
+ * Array de conquistas ajustado tematicamente para o seu projeto de migração.
+ */
 export const initialAchievements: Achievement[] = [
-
   {
-
     id: "level1",
-
-    title: "NÍVEL 1 ALCANÇADO",
-
-    description: "Acerte 1 pergunta",
-
-    icon: "🏆",
-
+    title: "PREPARAÇÃO CONCLUÍDA",
+    description: "Acertou 1 pergunta. Você deu o primeiro passo na jornada para a nuvem!",
+    icon: "🚀",
     unlocked: false,
-
     requiredScore: 20,
-
   },
-
   {
-
     id: "level2",
-
-    title: "NÍVEL 2 ALCANÇADO",
-
-    description: "Acerte 3 perguntas",
-
-    icon: "⭐",
-
+    title: "PILOTO VALIDADO",
+    description: "Acertou 3 perguntas. A latência está ótima e o PCI-DSS aprovado!",
+    icon: "🛡️",
     unlocked: false,
-
     requiredScore: 60,
-
   },
-
   {
-
     id: "master",
-
-    title: "MESTRE DA CLOUD",
-
-    description: "Acerte todas as perguntas",
-
-    icon: "👑",
-
+    title: "ARQUITETO CLOUD MASTER",
+    description: "Acertou todas! O datacenter foi descomissionado com sucesso!",
+    icon: "☁️",
     unlocked: false,
-
     requiredScore: 100,
-
   },
-
 ];
- 
