@@ -45,17 +45,9 @@ const Index = () => {
     const timer = setTimeout(() => {
       setIsLoading(false); // Remove a tela de carregamento
       
-      // Para a música de loading e a reinicia para o começo
-      if (loadingAudioRef.current) {
-        loadingAudioRef.current.pause();
-        loadingAudioRef.current.currentTime = 0;
-      }
+      // Código de interrupção da música removido.
+      // Agora a música continuará tocando suavemente na transição para a tela de gamificação.
       
-      // Inicia a música do jogo apenas se já não estiver no mudo
-      if (gameAudioRef.current) {
-        console.log("Tempo de loading acabou. Tentando tocar a música do jogo...");
-        gameAudioRef.current.play().catch(e => console.log("Autoplay do jogo bloqueado pelo temporizador:", e));
-      }
     }, 15000); // 15 segundos
 
     // Limpeza ao sair do componente
@@ -166,20 +158,78 @@ const Index = () => {
         {isMuted ? <VolumeX className="w-4 h-4" /> : <Music className="w-4 h-4 text-glow-cyan" />}
       </button>
 
-      {/* Tela de Carregamento (Agora com 15 segundos) */}
+      {/* Tela de Carregamento */}
       {isLoading ? (
-        <div className="flex-1 flex flex-col items-center justify-center bg-background">
-          <div className="relative flex items-center justify-center mt-10">
-            <div className="w-20 h-20 border-4 border-primary border-t-transparent rounded-full animate-spin glow-blue"></div>
-            <Cloud className="w-8 h-8 text-glow-cyan absolute animate-pulse" />
-          </div>
+        <div className="flex-1 flex flex-col items-center justify-center bg-background relative overflow-hidden">
           
-          <h2 className="mt-8 font-display text-2xl font-bold text-glow-cyan animate-pulse uppercase tracking-widest text-center">
-            Iniciando Migração...
-          </h2>
-          <p className="mt-3 font-display text-sm tracking-wider text-muted-foreground uppercase">
-            Preparando o ambiente Cloud
-          </p>
+          {/* ANIMAÇÃO DE NUVENS PASSANDO NO FUNDO */}
+          <style>{`
+            @keyframes drift {
+              0% { transform: translateX(-20vw); }
+              100% { transform: translateX(120vw); }
+            }
+            .animate-drift-1 { animation: drift 20s linear infinite; }
+            .animate-drift-2 { animation: drift 30s linear infinite; animation-delay: -10s; }
+            .animate-drift-3 { animation: drift 25s linear infinite; animation-delay: -5s; }
+          `}</style>
+          
+          <div className="absolute inset-0 pointer-events-none z-0 opacity-10">
+            <Cloud className="absolute top-[10%] -left-[20%] w-80 h-80 text-primary animate-drift-1" />
+            <Cloud className="absolute top-[45%] -left-[20%] w-[500px] h-[500px] text-glow-cyan animate-drift-2" />
+            <Cloud className="absolute bottom-[5%] -left-[20%] w-96 h-96 text-primary animate-drift-3" />
+          </div>
+
+          {/* SECÇÃO DAS FOTOGRAFIAS E TURMA */}
+          <div className="flex flex-col items-center mb-10 z-10 relative">
+            
+            {/* FOTOS GIGANTES */}
+            <div className="flex gap-12 lg:gap-20">
+              <div className="flex flex-col items-center gap-4">
+                <img 
+                  src="/image_6dd643.jpg" 
+                  alt="Emanuel italo" 
+                  className="w-48 h-48 lg:w-56 lg:h-56 rounded-full border-[6px] border-primary object-cover shadow-[0_0_50px_rgba(0,168,255,0.8)] animate-pulse"
+                />
+                <span className="font-display text-base lg:text-lg font-bold text-primary tracking-widest uppercase bg-background/60 px-5 py-1.5 rounded-full backdrop-blur-md">
+                  Emanuel italo
+                </span>
+              </div>
+              
+              <div className="flex flex-col items-center gap-4">
+                <img 
+                  src="/image_6dd340.jpg" 
+                  alt="Paulo Estalise" 
+                  className="w-48 h-48 lg:w-56 lg:h-56 rounded-full border-[6px] border-primary object-cover shadow-[0_0_50px_rgba(0,168,255,0.8)] animate-pulse"
+                />
+                <span className="font-display text-base lg:text-lg font-bold text-primary tracking-widest uppercase bg-background/60 px-5 py-1.5 rounded-full backdrop-blur-md">
+                  Paulo Estalise
+                </span>
+              </div>
+            </div>
+
+            {/* TURMA 2TDSPO */}
+            <div className="mt-8 bg-primary/20 border-2 border-primary/50 px-8 py-2.5 rounded-full shadow-[0_0_25px_rgba(0,168,255,0.4)] backdrop-blur-md">
+              <span className="font-display text-sm lg:text-base font-bold text-glow-cyan tracking-widest uppercase">
+                Turma: 2TDSPO
+              </span>
+            </div>
+
+          </div>
+
+          {/* SPINNER E TEXTO */}
+          <div className="relative flex flex-col items-center justify-center mt-4 z-10">
+            <div className="relative flex items-center justify-center mb-6">
+              <div className="w-24 h-24 border-[5px] border-primary border-t-transparent rounded-full animate-spin glow-blue"></div>
+              <Cloud className="w-10 h-10 text-glow-cyan absolute animate-pulse" />
+            </div>
+            
+            <h2 className="font-display text-3xl font-bold text-glow-cyan animate-pulse uppercase tracking-widest text-center bg-background/40 px-6 py-2 rounded-xl backdrop-blur-sm">
+              Iniciando Migração...
+            </h2>
+            <p className="mt-4 font-display text-base tracking-wider text-muted-foreground uppercase bg-background/60 px-6 py-1.5 rounded-full backdrop-blur-sm">
+              Preparando o ambiente Cloud
+            </p>
+          </div>
         </div>
       ) : (
         <>
